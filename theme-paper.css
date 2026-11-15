@@ -1,0 +1,346 @@
+/* 《造句》纸白主题
+   覆盖模板的深色底：纸色为底、墨色为字、朱砂只做小面积强调。
+   必须最后加载，靠顺序覆盖 style.css / projects.css / quick.css。 */
+
+:root{
+  color-scheme: light;
+  --paper:      #f6f1e6;
+  --paper-deep: #efe8d8;
+  --ink:        #1b1913;
+  --ink-2:      #403b30;
+  --ink-3:      #6b6455;
+  --seal:       #a8322a;
+  --rule:       rgba(27,25,19,.18);
+
+  /* 模板在两个变量上取了色，一并反相 */
+  --cream: #1b1913;
+  --gold:  #a8322a;
+}
+
+html{background:var(--paper)}
+body{
+  background:var(--paper);
+  color:var(--ink);
+}
+
+/* ---------- 导航 ---------- */
+body .nav{background:linear-gradient(180deg,rgba(246,241,230,.92),rgba(246,241,230,0))}
+body .nav nav a{opacity:.92;color:var(--ink-2)}
+body .nav nav a:hover{opacity:1;color:var(--seal)}
+body .brand small{opacity:.72;color:var(--ink-3)}
+@media(max-width:760px){
+  body .nav{background:linear-gradient(rgba(246,241,230,.94),rgba(246,241,230,0))}
+  body .nav nav{background:rgba(248,243,232,.98);box-shadow:0 18px 40px rgba(60,50,35,.16)}
+}
+
+/* ---------- 场景遮罩：左侧退成纸白，右侧留给图 ---------- */
+body .shade{
+  background:
+    linear-gradient(90deg,rgba(246,241,230,.97) 0%,rgba(246,241,230,.88) 34%,rgba(246,241,230,.34) 66%,rgba(246,241,230,.04) 92%),
+    linear-gradient(0deg,rgba(246,241,230,.34),transparent 26%);
+}
+body .left-shade{
+  background:
+    linear-gradient(90deg,rgba(246,241,230,.98) 0%,rgba(246,241,230,.90) 38%,rgba(246,241,230,.30) 72%,rgba(246,241,230,.02) 100%),
+    linear-gradient(0deg,rgba(246,241,230,.30),transparent 24%);
+}
+body .book-shade{
+  background:
+    linear-gradient(90deg,rgba(246,241,230,.97),rgba(246,241,230,.84) 43%,rgba(246,241,230,.18)),
+    linear-gradient(0deg,rgba(246,241,230,.36),transparent 32%);
+}
+body .gallery-shade{
+  background:
+    linear-gradient(90deg,rgba(246,241,230,.96),rgba(246,241,230,.82) 44%,rgba(246,241,230,.24)),
+    linear-gradient(0deg,rgba(246,241,230,.40),transparent 38%);
+}
+@media(max-width:760px){
+  body .shade,body .left-shade,body .gallery-shade,body .book-shade{
+    background:
+      linear-gradient(90deg,rgba(246,241,230,.96),rgba(246,241,230,.80) 62%,rgba(246,241,230,.30)),
+      linear-gradient(0deg,rgba(246,241,230,.42),transparent 38%);
+  }
+}
+
+/* 模板的换幕图层是深色渐变，纸白主题下就是一块灰罩；换成同色纸白，
+   万一哪次又把转场图层打开，也不会再把页面糊灰。 */
+body .scene-transition-tint{
+  background:linear-gradient(90deg,rgba(246,241,230,.97) 0%,rgba(246,241,230,.88) 34%,rgba(246,241,230,.34) 66%,rgba(246,241,230,.04) 92%);
+}
+
+/* ---------- 纸页转场 ----------
+   换幕时一块"纸"从下往上滑过整屏：底下是下一屏的背景（很淡），上面罩纸色。
+   它在盖住的那段时间里把页面滚到位，然后掀开、露出新的一屏。
+   和模板的区别只有一条：罩子是纸色而不是深灰。 */
+.scene-veil{
+  position:fixed;inset:0;z-index:60;pointer-events:none;overflow:hidden;visibility:hidden;
+  transform:translate3d(0,var(--veil-from,100%),0);
+  opacity:1;
+  /* 纸页本身是不透明的：底下一层纯纸色，才不会和旧的一屏叠成一团双影 */
+  background:#f6f1e6;
+  box-shadow:0 -22px 44px rgba(64,54,38,.11);
+}
+.scene-veil.in{visibility:visible;transform:translate3d(0,0,0);transition:transform .5s cubic-bezier(.42,.02,.2,1)}
+.scene-veil.out{
+  visibility:visible;transform:translate3d(0,var(--veil-to,-7%),0);opacity:0;
+  transition:transform .62s cubic-bezier(.34,0,.22,1),opacity .5s ease .1s;
+}
+.scene-veil-img{
+  position:absolute;inset:-6%;
+  background-size:cover;background-position:center;
+  opacity:.46;filter:blur(2px) saturate(.85);
+}
+/* 有作品图时：缩成一张小样印在纸的右侧，左边留给章节号 */
+.scene-veil-img.is-art{
+  inset:auto;
+  right:9%;top:50%;
+  width:min(40vw,540px);height:min(52vh,440px);
+  transform:translateY(-50%);
+  background-size:contain;background-repeat:no-repeat;background-position:center;
+  opacity:.34;filter:blur(.9px) saturate(.9);
+}
+.scene-veil-tint{
+  position:absolute;inset:0;
+  background:linear-gradient(178deg,rgba(246,241,230,.60),rgba(246,241,230,.32) 52%,rgba(246,241,230,.80));
+}
+.scene-veil.has-art .scene-veil-tint{
+  background:linear-gradient(96deg,rgba(246,241,230,.94) 0%,rgba(246,241,230,.72) 34%,rgba(246,241,230,.30) 62%,rgba(246,241,230,.46) 100%);
+}
+/* 纸面上印着下一屏的章节号，像翻过一页扉页 */
+.scene-veil-card{
+  position:absolute;left:7%;bottom:22%;
+  display:flex;flex-direction:column;gap:14px;
+  color:rgba(27,25,19,.30);
+}
+.scene-veil-card em{
+  font:400 clamp(96px,13vw,190px)/.86 var(--latin,Georgia,serif);
+  letter-spacing:.02em;font-style:normal;color:rgba(27,25,19,.14);
+}
+.scene-veil-card span{
+  font-size:14px;letter-spacing:.42em;font-family:var(--serif,Georgia,serif);
+}
+/* 纸页的前沿留一条极细的边，读起来像一张纸压过来，而不是一块色块 */
+.scene-veil:before{
+  content:'';position:absolute;left:0;right:0;top:0;height:1px;
+  background:rgba(27,25,19,.16);
+}
+@media(prefers-reduced-motion:reduce){.scene-veil{display:none}}
+
+/* ---------- 文字 ---------- */
+body .eyebrow{color:#57503f}
+body .eyebrow span{color:var(--seal)}
+body h1 em,body h2 em{color:var(--seal)}
+body .bodycopy{color:rgba(27,25,19,.78)}
+body .hero h1{color:var(--ink)}
+body h2.custom-heading.template-heading{color:var(--ink)}
+body .project-art>span{color:var(--ink-2)}
+body .section-title,body .chapter-title{color:var(--ink)}
+body .hint{color:var(--ink-3)}
+body .contact-note{color:var(--ink-2)}
+body .side-label{opacity:.66;color:var(--ink-3)}
+body .scene-index{color:rgba(27,25,19,.68)}
+
+body .button{border-color:rgba(27,25,19,.42);color:var(--ink)}
+body .button:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+body .textlink:hover{color:var(--seal)}
+body .underline{border-bottom:1px solid rgba(27,25,19,.34)}
+
+/* ---------- 目录列表 ---------- */
+body .work-list{border-top:1px solid rgba(27,25,19,.26)}
+body .work-item{background:rgba(255,255,255,.26);border-bottom:1px solid rgba(27,25,19,.16)}
+body .work-item:hover,body .work-item:focus-visible{background:rgba(255,255,255,.62)}
+body .work-item>span{color:var(--seal)}
+
+/* ---------- 画廊卡片 ---------- */
+body .exhibit-card{
+  background:var(--paper-deep);
+  border:1px solid rgba(27,25,19,.16);
+  box-shadow:0 20px 46px rgba(60,50,35,.20);
+}
+body .exhibit-card:after{background:linear-gradient(0deg,rgba(18,16,12,.74),transparent 58%)}
+body .exhibit-info{border-top:1px solid rgba(27,25,19,.24)}
+body .exhibit-kicker{color:var(--seal)}
+body .exhibit-info p:not(.exhibit-kicker){color:rgba(27,25,19,.72)}
+body .exhibit-open{border:1px solid rgba(27,25,19,.34);background:rgba(255,255,255,.5);color:var(--ink)}
+body .exhibit-open:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+body .exhibit-controls{color:rgba(27,25,19,.58)}
+body .exhibit-controls button,body .viewer-nav button{color:var(--ink)}
+body .exhibit-controls button:hover,body .viewer-nav button:hover{color:var(--seal)}
+
+/* ---------- 作品查看弹层 ---------- */
+body#exhibit-viewer,body #exhibit-viewer{
+  background-color:var(--paper);
+  background:
+    linear-gradient(90deg,rgba(246,241,230,.94),rgba(246,241,230,.86) 56%,rgba(246,241,230,.92)),
+    url("assets/bg/blur-15.webp") center/cover no-repeat fixed;
+  color:var(--ink);
+}
+body #exhibit-viewer::backdrop{background:var(--paper)}
+body#exhibit-viewer:has(.liquid-surface:not([hidden]))::before,body #exhibit-viewer:has(.liquid-surface:not([hidden]))::before{
+  background:linear-gradient(90deg,rgba(246,241,230,.94),rgba(246,241,230,.86) 56%,rgba(246,241,230,.92));
+}
+body .viewer-bar{color:rgba(27,25,19,.68);border-color:rgba(27,25,19,.18)}
+body .viewer-bar button{color:var(--ink)}
+body .viewer-back{color:var(--ink)}
+body .viewer-back:hover{color:var(--seal)}
+body .viewer-media{
+  background:rgba(255,255,255,.55);
+  border:1px solid rgba(27,25,19,.12);
+  box-shadow:0 20px 46px rgba(60,50,35,.16);
+}
+body .viewer-copy{text-shadow:none}
+body .viewer-kicker{color:var(--seal)}
+body .viewer-copy p{color:rgba(27,25,19,.8)}
+body .viewer-copy .viewer-note{color:rgba(27,25,19,.56)!important}
+body .viewer-nav button{color:var(--ink);border-color:rgba(27,25,19,.28);background:transparent}
+body .viewer-nav span{color:rgba(27,25,19,.6)}
+body .viewer-rail-label{color:rgba(27,25,19,.58)}
+body .viewer-thumb button{background:var(--paper-deep);border-color:rgba(27,25,19,.14);box-shadow:0 8px 18px rgba(60,50,35,.16)}
+body .viewer-thumb button[aria-current="true"]{border-color:var(--seal)}
+body .viewer-thumb button span{background:rgba(27,25,19,.72)}
+
+/* 详情页卡片（拖动浏览）
+   卡片尺寸由 projects.js 按作品真实比例写进 inline style，
+   这里只负责定位、纸框和图片完整呈现——图片一律不裁。 */
+body .detail-card{
+  top:50%;
+  width:auto;
+  height:auto;
+  overflow:visible;          /* 题注放到框外，别被裁 */
+  background:var(--paper-deep);
+  border:1px solid rgba(27,25,19,.14);
+  box-shadow:0 20px 46px rgba(60,50,35,.18);
+  transition:transform .65s cubic-bezier(.2,.7,.2,1),opacity .5s,width .5s cubic-bezier(.2,.7,.2,1),height .5s cubic-bezier(.2,.7,.2,1);
+}
+body .detail-card img{object-fit:contain;background:var(--paper-deep)}
+/* 卡里只放完整的作品，谁也不许压在上面。
+   作品名在下方 .detail-info 里已经有了，卡内那行不再重复显示
+   （文字仍留在 DOM 里，读屏器和 aria-label 都还在）。 */
+body .detail-card:after{display:none}
+body .detail-card[aria-current="true"]{box-shadow:0 24px 54px rgba(60,50,35,.24)}
+body .detail-card-label{display:none}
+
+/* 主卡居中，其余作品在大图两侧一层层摊开，只露一条边 */
+body.standalone-exhibition .detail-stage{height:min(56vh,530px)}
+@media(max-width:760px){body.standalone-exhibition .detail-stage{height:40dvh}}
+body .detail-card{cursor:pointer}
+/* 后面那些层不该抢戏：阴影和边框都压淡，越远越淡由 JS 的 opacity 管 */
+body .detail-card:not([aria-current="true"]){
+  box-shadow:0 10px 22px rgba(60,50,35,.13);
+  border-color:rgba(27,25,19,.1);
+}
+body .detail-info{border-top:1px solid rgba(27,25,19,.24)}
+body .detail-info p:not(.exhibit-kicker){color:rgba(27,25,19,.7)}
+body .detail-player{background:rgba(246,241,230,.97)}
+body .detail-player>button{color:var(--ink)}
+body .detail-empty img{opacity:.9}
+body .detail-empty span{color:var(--ink)}
+
+/* ---------- 弹窗 ---------- */
+body dialog{background:var(--paper);color:var(--ink);box-shadow:0 30px 90px rgba(60,50,35,.26)}
+body dialog::backdrop{background:rgba(246,241,230,.82);backdrop-filter:blur(6px)}
+body .dialog-top{color:var(--ink-3);border-color:var(--rule)}
+body .dialog-top button{color:var(--ink)}
+body .dialog-label{color:var(--seal)}
+body .entry{border-top:1px solid rgba(27,25,19,.16)}
+body .entry p{color:var(--ink-2)}
+body .entry small{color:var(--ink-3)}
+body :focus-visible{outline:2px solid rgba(168,50,42,.6)}
+
+/* ---------- 音乐 ---------- */
+body .music-widget{color:var(--ink-2)}
+body .music-toggle{background:rgba(255,255,255,.62);border-color:rgba(27,25,19,.2);backdrop-filter:blur(12px)}
+body .music-toggle:hover{background:rgba(255,255,255,.9);color:var(--ink);border-color:rgba(27,25,19,.34)}
+body .music-symbol{color:var(--seal)}
+body .music-panel{background:rgba(250,246,238,.96);border-color:rgba(27,25,19,.14);box-shadow:0 18px 44px rgba(60,50,35,.16)}
+body .music-kicker{color:var(--seal)}
+body .music-title span{color:var(--seal)}
+body .music-link{color:var(--ink-2)}
+body .music-link:hover{color:var(--seal)}
+body .music-credit{color:var(--ink-3)}
+body .music-status{color:var(--ink-2)}
+
+/* ---------- 光标与水面涟漪 ---------- */
+body .glow-cursor{
+  background:#2b271d;
+  box-shadow:0 0 6px 1px rgba(43,39,29,.30),0 0 16px 4px rgba(168,50,42,.16),0 0 30px 10px rgba(168,50,42,.08);
+}
+body .glow-cursor.interactive{
+  box-shadow:0 0 8px 2px rgba(43,39,29,.42),0 0 22px 7px rgba(168,50,42,.26),0 0 38px 14px rgba(168,50,42,.12);
+}
+/* 图片和深色区域上，深墨色的点等于消失——换浅色，才看得出鼠标在哪 */
+body .glow-cursor.on-media{
+  background:#fdf7e9;
+  box-shadow:0 0 6px 2px rgba(253,247,233,.8),0 0 18px 6px rgba(255,244,218,.4),0 0 30px 10px rgba(255,244,218,.18);
+}
+body .glow-cursor.on-media.interactive{
+  box-shadow:0 0 8px 3px rgba(253,247,233,.92),0 0 24px 9px rgba(255,244,218,.5),0 0 38px 15px rgba(255,244,218,.24);
+}
+
+/* ---------- 全屏项目壳 ---------- */
+body .project-shell{background:var(--paper)}
+
+/* ---------- 手法区（原本就是浅色，拉开一点层次） ---------- */
+body .practice{background:var(--paper-deep);border-top:1px solid rgba(27,25,19,.08)}
+
+/* ---------- 涟漪层：水面在最底下，纸色遮罩压在它上面，文字再压一层 ----------
+   水面画的是整张背景图（不透明），所以必须在 .shade 下面，
+   否则纸色遮罩会被盖住，页面会突然变成照片原色。 */
+body .scene>.liquid-surface{z-index:0}
+body .scene .shade{z-index:1}
+body .scene-content{position:relative;z-index:3}
+body .scene-index,body .side-label{z-index:3}
+body#exhibit-viewer .liquid-surface,body #exhibit-viewer .liquid-surface{z-index:2}
+body#exhibit-viewer .viewer-bar,body#exhibit-viewer .viewer-grid,body #exhibit-viewer .viewer-bar,body #exhibit-viewer .viewer-grid{position:relative;z-index:3}
+
+/* 作品图的投影：浅底上用暖灰，不要原来的黑晕 */
+body .project-art img{box-shadow:0 16px 40px rgba(64,54,38,.15)}
+body .detail-card,body .exhibit-card{box-shadow:0 16px 38px rgba(64,54,38,.13)}
+
+/* ---------- 快速目录页（旋转画廊） ---------- */
+body.quick-page{background:var(--paper);color:var(--ink)}
+
+/* 涟漪层不再负责画背景，作品底图必须始终可见 */
+body.quick-page .world:has(.liquid-surface:not([hidden])) .world-photo{visibility:visible}
+
+body.quick-page .world-shade{
+  background:
+    linear-gradient(90deg,rgba(246,241,230,.96) 0%,rgba(246,241,230,.82) 36%,rgba(246,241,230,.12) 78%),
+    linear-gradient(0deg,rgba(246,241,230,.62),transparent 46%,rgba(246,241,230,.18));
+}
+body.quick-page .world-light{background:radial-gradient(ellipse at 70% 52%,transparent 34%,rgba(246,241,230,.30) 100%)}
+
+body.quick-page .topbar,body.quick-page .foot{border-color:rgba(27,25,19,.18);color:var(--ink-2)}
+body.quick-page .quick-home span{opacity:.5}
+body.quick-page .overline{color:var(--seal)}
+body.quick-page .overline span{background:rgba(168,50,42,.5)}
+body.quick-page .intro-desc{color:rgba(27,25,19,.72)}
+
+body.quick-page .index-title{color:rgba(27,25,19,.55);border-bottom-color:rgba(27,25,19,.16)}
+body.quick-page .index button{color:rgba(27,25,19,.62)}
+body.quick-page .index button i{color:rgba(168,50,42,.55)}
+body.quick-page .index button.active,body.quick-page .index button:hover{color:var(--ink)}
+body.quick-page .index button.active i{color:var(--seal)}
+
+body.quick-page .reference-tag{color:var(--seal)}
+body.quick-page .reference-title{color:var(--ink)}
+body.quick-page .reference-summary{color:rgba(27,25,19,.72)}
+body.quick-page .reference-open{color:var(--ink);border-bottom-color:rgba(168,50,42,.6)}
+
+body.quick-page .stage-controls{color:rgba(27,25,19,.62)}
+body.quick-page .stage-controls button{border-color:rgba(27,25,19,.28);background:rgba(255,255,255,.5);color:var(--ink)}
+body.quick-page .stage-controls button:hover{background:rgba(255,255,255,.9)}
+body.quick-page .scroll-hint{color:rgba(27,25,19,.62)}
+
+/* 收尾：图上标注与说明文字再压深一点，别在纸底上飘 */
+body .project-art>span{opacity:1;color:rgba(27,25,19,.78)}
+body .project-art>span b{opacity:.6}
+body .viewer-copy p{color:rgba(27,25,19,.85)}
+body .viewer-copy .viewer-note{color:rgba(27,25,19,.62)!important}
+body .standalone-title{color:var(--ink)}
+body.quick-page .scroll-hint{color:rgba(27,25,19,.72)}
+body.quick-page .scroll-line{background:rgba(27,25,19,.35)}
+/* guide 文本在 quick.css 里被加了两个祖先类，这里对齐特异性 */
+body.quick-page .reference-space .scroll-hint{color:rgba(27,25,19,.72)}
+body.quick-page .reference-space .scroll-hint small{color:rgba(27,25,19,.55)}
+body.quick-page .scroll-line{background:linear-gradient(transparent,rgba(27,25,19,.5))}

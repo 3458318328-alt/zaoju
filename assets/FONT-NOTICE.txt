@@ -1,0 +1,5 @@
+字体文件说明（请保留）：
+portfolio-chinese.woff: Noto Sans CJK SC, © 2014–2021 Adobe.
+gallery-serif.woff: Noto Serif CJK SC, © 2017–2024 Adobe.
+portfolio-latin.woff: Noto Serif Display, Copyright 2016 Google Inc. All Rights Reserved.
+字体使用 SIL Open Font License 1.1；完整许可证文字见本目录 noto-font-license.txt 的 SIL-1.1 段落。字体文件由原作品集携带，授权信息参照字体自身元数据。

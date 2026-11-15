@@ -1,0 +1,162 @@
+html,body.quick-page{height:100%;margin:0}body.quick-page{overflow:hidden;background:#1a3039;color:#f7f3ec;font-family:system-ui,-apple-system,'Microsoft YaHei',sans-serif}.world{position:fixed;inset:0;overflow:hidden;pointer-events:none}.world-photo{position:absolute;inset:-2%;background:url('assets/directory-lake.png') 58% 48%/cover no-repeat;transform:translate3d(var(--px,0px),var(--py,0px),0) scale(1.03);transition:transform 2s ease}.world-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,28,34,.9) 0%,rgba(15,30,36,.69) 35%,rgba(18,33,38,.31) 76%),linear-gradient(0deg,rgba(9,20,27,.76),transparent 48%,rgba(11,24,30,.25))}.world-light{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 52%,transparent 20%,rgba(9,20,28,.24) 100%)}.topbar{position:fixed;z-index:50;left:5.3%;right:5.3%;top:0;height:76px;border-bottom:1px solid #fff3;display:flex;align-items:center;justify-content:space-between;font:10px system-ui;letter-spacing:.18em}.topbar a,.foot a{color:inherit;text-decoration:none}.topbar a span{opacity:.55}.quick-close{font-size:11px;letter-spacing:.1em}.quick-close b{font-size:17px;font-weight:400;margin-left:12px}.top-caption{color:#f6eee88a;font-size:9px;letter-spacing:.2em}.experience{position:absolute;inset:76px 0 63px;display:grid;grid-template-columns:minmax(280px,34%) 1fr}.intro{position:relative;z-index:5;padding:clamp(40px,7vh,90px) 0 20px 15.6%;pointer-events:none}.overline{display:flex;align-items:center;gap:10px;color:#ecd4b6;font:9px system-ui;letter-spacing:.18em}.overline span{display:inline-block;width:23px;height:1px;background:#ead6bd}h1{font:400 clamp(32px,3vw,47px)/1.4 'Noto Serif SC','Songti SC',serif;letter-spacing:.14em;margin:29px 0 15px;color:#f4eee4}h1 span{color:#e7c7a1}.intro-desc{font:12px/2 system-ui;color:#f1ece2b5;letter-spacing:.05em}.index-title{display:flex;justify-content:space-between;color:#ded1bf9e;font:9px system-ui;letter-spacing:.17em;width:min(255px,85%);padding:25px 0 12px;border-bottom:1px solid #f7e9d52e}.index-title span{letter-spacing:.08em}.index{display:grid;width:min(255px,85%);pointer-events:auto;padding-top:10px}.index button{border:0;background:none;color:#ece8de97;text-align:left;padding:8px 0;font:12px system-ui;letter-spacing:.06em;cursor:pointer;transition:color .4s,transform .4s}.index button i{font:normal 10px Georgia;color:#d4b79a8f;display:inline-block;width:35px}.index button.active,.index button:hover{color:#fff;transform:translateX(5px)}.index button.active i{color:#f4d8b3}.space{position:relative;overflow:hidden;perspective:1100px;touch-action:pan-y;isolation:isolate}.depth-haze{position:absolute;inset:7% 0;background:radial-gradient(ellipse at 52% 45%,#f2caa416 0%,transparent 59%);pointer-events:none}.orbit{position:absolute;inset:0;opacity:.22;pointer-events:none}.orbit span{position:absolute;left:12%;top:26%;width:83%;height:44%;border-top:1px solid #f4d8b23d;border-radius:50%;transform:rotate(-20deg)}.orbit span:nth-child(2){top:44%;left:8%;transform:rotate(-20deg);opacity:.5}.orbit span:nth-child(3){top:8%;left:16%;transform:rotate(-20deg);opacity:.4}.helix{position:absolute;inset:0;transform-style:preserve-3d}.project{position:absolute;left:50%;top:50%;width:min(540px,58vw);transform-origin:center center;will-change:transform,opacity;transform-style:preserve-3d;backface-visibility:hidden}.project-link{color:inherit;text-decoration:none;display:block;outline-offset:6px}.project-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font:9px system-ui;letter-spacing:.17em;color:#eaddcbbf}.project-cover{position:relative;overflow:hidden;aspect-ratio:1.75;background:#293c40;box-shadow:0 28px 80px #09182073}.project-cover img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.83);transition:filter .8s,transform 1s}.project-link:hover img{filter:saturate(1);transform:scale(1.035)}.project-cover:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#13232d42,transparent 45%);pointer-events:none}.project-bottom{display:grid;grid-template-columns:1fr auto;align-items:end;gap:12px;padding-top:15px}.project-title{font:400 clamp(24px,2.5vw,37px)/1.2 Georgia,'Noto Serif SC','Songti SC',serif;letter-spacing:.09em;margin:0}.project-title small{font-size:.62em;letter-spacing:.14em;color:#f1dfc7}.project-summary{font:11px/1.7 system-ui;letter-spacing:.06em;color:#f6efe3bb;margin:7px 0 0}.project-action{font:10px system-ui;letter-spacing:.12em;color:#f9f0e2;border-bottom:1px solid #f5e0c6a0;padding:0 0 9px;white-space:nowrap}.project-action span{padding-left:20px}.stage-controls{position:absolute;z-index:20;right:7%;top:45%;display:grid;justify-items:center;gap:12px;font:10px Georgia;letter-spacing:.1em;color:#f6e7d6}.stage-controls button{border:1px solid #ffffff45;border-radius:100%;width:33px;height:33px;background:#14283033;color:white;cursor:pointer;transition:background .3s}.stage-controls button:hover{background:#ffffff29}.scroll-hint{position:absolute;bottom:3%;left:6%;display:flex;gap:12px;align-items:center;font:11px/1.7 system-ui;letter-spacing:.09em;color:#f5eadbaf}.scroll-hint small{font-size:8px;letter-spacing:.15em;opacity:.7}.scroll-line{width:1px;height:35px;background:linear-gradient(transparent,#f5e2c0)}.foot{position:fixed;z-index:30;bottom:0;left:5.3%;right:5.3%;height:62px;border-top:1px solid #fff3;display:flex;align-items:center;gap:30px;color:#ece2d2a8;font:9px system-ui;letter-spacing:.15em}.foot .quick-immersive{margin-left:auto}.foot a{font:11px system-ui;letter-spacing:.08em}.foot a:hover{color:white}button:focus-visible,a:focus-visible{outline:2px solid #f1dbb7;outline-offset:4px}
+@media(max-width:800px){.topbar{height:64px}.top-caption{display:none}.experience{inset:64px 0 67px;display:block}.intro{position:absolute;top:0;left:0;right:0;padding:22px 6% 0}.overline{font-size:8px}h1{font-size:25px;line-height:1.25;margin:13px 0 5px}h1 br{display:none}.intro-desc{font-size:10px;line-height:1.7;margin:0}.index-title{display:none}.index{display:flex;gap:8px;overflow-x:auto;width:100%;padding:15px 0 5px;scrollbar-width:none}.index button{white-space:nowrap;font-size:10px;padding:5px 8px;border:1px solid #f9e6cc45;border-radius:2px}.index button i{display:none}.index button.active{background:#f7e8cf30;transform:none}.space{position:absolute;inset:175px 0 0}.project{width:min(78vw,480px)}.project-title{font-size:25px}.project-summary{font-size:10px}.project-action{font-size:9px}.stage-controls{right:3%;top:45%}.scroll-hint{left:7%;bottom:0;font-size:10px}.foot{height:62px;gap:18px}.foot>span{display:none}.foot .quick-immersive{margin-left:0;margin-right:auto}.world-photo{background-position:68% center}.world-shade{background:linear-gradient(90deg,#10242cc9,#1b2b35a0),linear-gradient(0deg,#09161ecc,transparent 70%)}}
+@media(prefers-reduced-motion:reduce){.world-photo,.project-cover img{transition:none!important}}
+
+.top-caption{visibility:hidden}
+/* The whole card moves in the same 3-D scene; no decorative orbit lines. */
+.orbit{display:none}
+.space{perspective:900px;perspective-origin:50% 50%;touch-action:none}
+.helix{transform:translateZ(0);transform-style:preserve-3d}
+.project{width:min(430px,46vw);backface-visibility:visible}
+.project-cover{box-shadow:0 24px 65px #0a182577}
+.project-bottom{background:linear-gradient(180deg,#182b348c,#172a32ad);padding:14px 15px 16px}
+.project-title{font-size:clamp(22px,2.15vw,30px)}
+.project-title small{font-size:.7em}
+.project-summary{font-size:11px}
+@media(max-width:800px){.space{perspective:750px}.project{width:min(67vw,365px)}.project-bottom{padding:9px 10px 11px}.project-title{font-size:22px}.project-summary{font-size:10px}}
+
+/* Use the original image-refraction water layer behind the scene and text. */
+.world.scene{background-image:var(--bg);background-position:center;background-size:cover}.world .liquid-surface{position:absolute;inset:0;z-index:0;pointer-events:none}.world-photo,.world-shade,.world-light{z-index:1}.world:has(.liquid-surface:not([hidden])) .world-photo{visibility:hidden}.world-shade,.world-light{pointer-events:none}
+
+/* The images bend with the water while captions remain crisp. */
+.cover-filter-defs{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+.project-cover{overflow:visible;background:transparent;box-shadow:none}
+.project-cover:after{display:none}
+.cover-liquid{position:relative;width:100%;height:100%;transform-origin:center center;box-shadow:0 24px 65px #0a182577}
+.project-cover .cover-main,.project-cover .cover-ripple{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.project-cover .cover-ripple{pointer-events:none;opacity:0;transition:none;mask-image:radial-gradient(ellipse 35% 40% at var(--ripple-x,50%) var(--ripple-y,50%),#000 0%,rgba(0,0,0,.78) 38%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 35% 40% at var(--ripple-x,50%) var(--ripple-y,50%),#000 0%,rgba(0,0,0,.78) 38%,transparent 100%)}
+@media(prefers-reduced-motion:reduce){.cover-ripple{display:none!important}.cover-liquid{filter:none!important}}
+
+/* A subdivided curved surface changes the artwork's outline as well as its image. */
+.cover-liquid.mesh-ready{box-shadow:none}
+.cover-liquid.mesh-ready .cover-main{visibility:hidden}
+.project-cover .cover-mesh{position:absolute;left:-20%;top:-18%;width:140%;height:136%;display:block;pointer-events:none;filter:saturate(.83)}
+
+/* A quieter stage gives the selected cover more space to be seen. */
+.project{width:min(600px,48vw)}
+.project-top,.project-bottom{position:relative;z-index:1}
+.project-top{color:#f5e7d6d9}
+.project-bottom{background:linear-gradient(180deg,#142b34c7,#142b34ed);padding:18px 20px 20px}
+.project-title{font-size:clamp(25px,2.45vw,35px)}
+.project-cover .cover-mesh{filter:saturate(.76)}
+.cover-liquid{transform-origin:center center}
+.cover-trail{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;opacity:0;pointer-events:none;filter:blur(9px) saturate(.7);border-radius:6% / 12%;transform-origin:center center}
+.cover-liquid{z-index:1}
+@media(max-width:800px){.cover-trail{filter:blur(5px) saturate(.7)}}
+@media(prefers-reduced-motion:reduce){.cover-trail{display:none}}
+@media(max-width:800px){.project{width:min(82vw,470px)}.project-bottom{padding:12px 14px 14px}.project-title{font-size:24px}}
+/* Gallery motion adapted from the original MIT-licensed OGL demonstration. */
+.reference-space{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.reference-space #gl,.reference-fallback{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.reference-fallback img{position:absolute;left:50%;top:50%;width:320px;height:300px;object-fit:cover;backface-visibility:visible}
+.reference-info{position:absolute;left:calc(50% + 205px);top:50%;transform:translateY(-50%);width:min(260px,20vw);pointer-events:auto}
+.reference-tag{font:10px system-ui;letter-spacing:.16em;color:#e9d4b7}.reference-title{font:400 clamp(23px,2.3vw,33px)/1.35 Georgia,'Songti SC',serif;margin:18px 0 8px}.reference-summary{font:11px/1.8 system-ui;color:#f6efe3bc}.reference-open{color:#fff;text-decoration:none;display:inline-block;margin-top:20px;border-bottom:1px solid #e9d4b7;padding-bottom:8px;font:11px system-ui}
+.reference-space .stage-controls{pointer-events:auto}.reference-space .scroll-hint{left:40%;bottom:8%}.intro{z-index:10}.reference-space{z-index:2}
+@media(max-width:800px){.reference-fallback img{width:min(72vw,320px);height:280px}.reference-info{left:8%;top:auto;bottom:4%;transform:none;width:75%}.reference-title{font-size:22px;margin:5px 0}.reference-summary{margin:0}.reference-open{margin-top:6px}.reference-space .scroll-hint{display:none}.reference-space .stage-controls{top:47%}.intro{pointer-events:none}.intro .index{pointer-events:auto}}
+
+/* The index and gallery share one composition; the original gallery motion is unchanged. */
+.quick-page .topbar,.quick-page .foot,.quick-page .index-title{border:0}
+.quick-page .experience{grid-template-columns:minmax(340px,38%) 1fr}
+.quick-page .intro{padding:clamp(28px,4.5vh,55px) 0 20px 14%;}
+.quick-page .overline{display:block;margin:0;color:#ecdac5b8;font:9px/1.5 system-ui,sans-serif;letter-spacing:.18em}
+.quick-page .intro h1{margin:15px 0 10px;font:400 clamp(27px,2.35vw,35px)/1.4 PortfolioChinese,'Microsoft YaHei',sans-serif;letter-spacing:.1em;color:#f5f0e9;white-space:nowrap}
+.quick-page .intro-desc{margin:0;font:11px/1.9 system-ui,sans-serif;letter-spacing:.06em;color:#f2ece1a6}
+.quick-page .index-title{width:min(370px,90%);padding:clamp(25px,4vh,40px) 0 8px;font:9px/1.5 system-ui,sans-serif;letter-spacing:.18em;color:#e0d5c8a6}
+.quick-page .index{width:min(390px,96%);padding:0;display:grid;gap:0}
+.quick-page .index button{padding:clamp(8px,1.05vh,11px) 0;border:0;background:none;color:#f1ede3a6;font:400 clamp(16px,1.45vw,20px)/1.35 system-ui,-apple-system,'Microsoft YaHei',sans-serif;letter-spacing:.07em;white-space:nowrap;transition:color .4s ease,transform .4s ease}
+.quick-page .index button i{width:40px;color:#ddc9b392;font:normal 10px/1 Georgia,serif;letter-spacing:.08em;vertical-align:middle}
+.quick-page .index button.active,.quick-page .index button:hover{color:#fff;transform:translateX(5px)}
+.quick-page .index button.active i{color:#ecd2b1}
+.quick-page .reference-space #gl,.quick-page .reference-fallback{transform:translateX(16vw)}
+.quick-page .reference-info{left:calc(66% + 177px);right:5.3%;width:auto;top:50%;text-shadow:0 2px 16px #0b1b22a6}
+.quick-page .reference-tag{font-size:9px;letter-spacing:.14em;color:#e7d5c0c7}
+.quick-page .reference-title{font-size:clamp(21px,2vw,29px);line-height:1.4;letter-spacing:.06em;margin:13px 0 8px}
+.quick-page .reference-summary{font-size:11px;line-height:1.8;color:#f4eee4b3}
+.quick-page .reference-open{border:0;padding:4px 0;margin-top:15px;font-size:11px;letter-spacing:.08em}
+.quick-page .reference-open:hover{color:#f0d1ac}
+.quick-page .reference-space .stage-controls{top:auto;right:5.3%;bottom:8.5%;display:flex;align-items:center;gap:16px}
+.quick-page .stage-controls button{width:28px;height:28px;border:0;border-radius:0;background:transparent;font:17px/1 Georgia,serif;color:#f5eaddb5}
+.quick-page .stage-controls button:hover{background:transparent;color:white}
+.quick-page .reference-space .scroll-hint{left:5.3%;bottom:9%;gap:0;color:#f2e7d8a6}
+.quick-page .scroll-line{display:none}
+@media(min-width:801px) and (max-width:1100px){
+ .quick-page .experience{grid-template-columns:minmax(310px,38%) 1fr}
+ .quick-page .reference-space #gl,.quick-page .reference-fallback{transform:translateX(12vw)}
+ .quick-page .reference-info{left:calc(62% + 170px);right:4%}
+ .quick-page .reference-title{font-size:21px}
+}
+@media(max-width:800px){
+ .quick-page .experience{inset:64px 0 62px;display:block}
+ .quick-page .intro{top:0;left:0;right:0;padding:16px 6% 0}
+ .quick-page .overline{font-size:8px}
+ .quick-page .intro h1{margin:9px 0 3px;font-size:23px;line-height:1.35}
+ .quick-page .intro-desc{font-size:10px;line-height:1.5}
+ .quick-page .index-title{display:none}
+ .quick-page .index{display:grid;grid-template-columns:1fr 1fr;column-gap:12px;row-gap:0;width:100%;padding:10px 0 0;overflow:visible}
+ .quick-page .index button{font-size:clamp(11px,3vw,14px);line-height:1.45;letter-spacing:.02em;padding:5px 0;white-space:nowrap}
+ .quick-page .index button i{display:inline-block;width:25px;font-size:9px}
+ .quick-page .index button.active{background:none;transform:translateX(3px)}
+ .quick-page .reference-space #gl,.quick-page .reference-fallback{transform:translateY(5vh)}
+ .quick-page .reference-info{left:6%;right:16%;top:auto;bottom:84px;transform:none;width:auto}
+ .quick-page .reference-tag{font-size:8px}
+ .quick-page .reference-title{font-size:20px;margin:4px 0}
+ .quick-page .reference-summary{font-size:10px;margin:0}
+ .quick-page .reference-open{margin-top:5px}
+ .quick-page .reference-space .stage-controls{top:auto;right:6%;bottom:86px;gap:8px;flex-direction:column}
+ .quick-page .reference-space .scroll-hint{display:none}
+}
+@media(max-width:800px) and (max-height:700px){
+ .quick-page .intro{padding-top:10px}
+ .quick-page .index button{padding:3px 0}
+ .quick-page .reference-info{bottom:68px}
+ .quick-page .reference-space .stage-controls{bottom:70px}
+}
+
+/* The title uses the supplied lettering; the remaining Chinese type is a coordinated serif. */
+@font-face{font-family:GallerySerif;src:url('assets/gallery-serif.woff') format('woff');font-style:normal;font-weight:400;font-display:swap}
+.quick-page .experience{display:block}
+.quick-page .intro{position:absolute;left:17.2%;top:0;width:31%;padding:clamp(28px,4vh,50px) 0 16px}
+.quick-page .intro h1{width:min(100%,390px);margin:18px 0 10px;line-height:1;white-space:normal}
+.quick-page .title-accessible{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.quick-page .directory-title-art{display:block;width:100%;height:auto;overflow:visible}
+.quick-page .intro-desc{font-size:11px;line-height:1.9}
+.quick-page .index-title{width:100%;padding:clamp(24px,3.4vh,34px) 0 10px}
+.quick-page .index{width:100%}
+.quick-page .index button{padding:clamp(8px,1.25vh,13px) 0;font:400 clamp(21px,1.9vw,27px)/1.25 GallerySerif,'Songti SC',serif;letter-spacing:.055em}
+.quick-page .index button i{width:44px;font:normal 10px/1 Georgia,serif;letter-spacing:.08em}
+.quick-page .reference-space #gl,.quick-page .reference-fallback{transform:translateX(14vw)}
+.quick-page .reference-info{left:80.5%;right:4.5%;width:auto}
+.quick-page .reference-title{font:400 clamp(19px,1.65vw,24px)/1.5 PortfolioLatin,GallerySerif,'Songti SC',serif;letter-spacing:.025em;margin:12px 0 8px}
+.quick-page .reference-title .title-line{display:block;white-space:nowrap}
+.quick-page .reference-summary{font-size:11px;line-height:1.85}
+@media(min-width:801px) and (max-width:1100px){
+ .quick-page .intro{left:8%;width:34%}
+ .quick-page .intro h1{width:min(100%,340px)}
+ .quick-page .index button{font-size:clamp(18px,2.25vw,23px)}
+ .quick-page .reference-space #gl,.quick-page .reference-fallback{transform:translateX(12vw)}
+ .quick-page .reference-info{left:calc(62% + 155px);right:3%}
+ .quick-page .reference-title{font-size:clamp(16px,1.8vw,20px)}
+}
+@media(max-width:800px){
+ .quick-page .intro{left:6%;right:6%;width:auto;padding:16px 0 0}
+ .quick-page .intro h1{width:min(66vw,285px);margin:9px 0 5px}
+ .quick-page .index{width:100%}
+ .quick-page .index button{font-size:clamp(12px,3.2vw,15px);line-height:1.45;padding:5px 0;letter-spacing:.02em}
+ .quick-page .index button i{width:25px;font-size:9px}
+ .quick-page .reference-space #gl,.quick-page .reference-fallback{transform:translateY(5vh)}
+ .quick-page .reference-info{left:6%;right:16%;top:auto;bottom:84px}
+ .quick-page .reference-title{font-size:19px;line-height:1.3}
+}
+@media(max-width:800px) and (max-height:700px){
+ .quick-page .intro{padding-top:10px}
+ .quick-page .index button{padding:3px 0}
+ .quick-page .reference-info{bottom:68px}
+}
+
+/* Place the directory a little lower and closer to the visual center. */
+@media(min-width:1101px){
+ .quick-page .intro{left:18.4%;padding-top:clamp(48px,8vh,78px)}
+}
+@media(min-width:801px) and (max-width:1100px){
+ .quick-page .intro{left:9.2%;padding-top:clamp(42px,7vh,68px)}
+}

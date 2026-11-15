@@ -1,0 +1,203 @@
+/* 《造句》作品集：模板之上的少量版面修正
+   原则：作品图不裁切主体，横版按 16:9、竖版按 3:4 排布。 */
+
+.project-art{
+  height:auto;
+  top:50%;
+  transform:translateY(-50%);
+  width:min(32vw,440px);
+  gap:12px;
+  /* 整块是链接：点图就能进作品页，别只留下面那行小字 */
+  display:flex;
+  text-decoration:none;
+  color:inherit;
+  border-radius:0;
+}
+/* 注意：translateY(calc(-50% - 6px)) 在这台机器上会把 -6px 算丢，
+   hover 时等于没动。拆成两个函数各自生效，叠加结果一样。 */
+.project-art:hover{transform:translateY(-50%) translateY(-6px)}
+.project-art:focus-visible{outline:1px solid rgba(168,50,42,.55);outline-offset:8px}
+.project-art img{
+  width:100%;
+  height:auto;
+  min-height:0;
+  object-fit:cover;
+  aspect-ratio:16/9;
+  display:block;
+}
+.project-art.art-wide{width:min(40vw,560px)}
+.project-art.art-tall{width:min(25vw,352px)}
+.project-art.art-tall img{aspect-ratio:3/4}
+.project-art>span{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  font-size:13.5px;
+  letter-spacing:.14em;
+  opacity:.85;
+}
+.project-art>span b{float:none;font-weight:400;opacity:.7;white-space:nowrap}
+
+/* 竖版场景把正文再收窄一点，避免和右侧图抢位置 */
+.project-scene .scene-content{max-width:39%}
+
+@media (max-width:900px){
+  .project-art{width:86%;left:7%;right:auto;top:auto;transform:none;margin-top:26px}
+  .project-art:hover{transform:translateY(-6px)}
+  .project-art.art-wide,.project-art.art-tall{width:86%}
+  .project-scene .scene-content{max-width:none}
+}
+
+/* 结尾页标题用文字而非字形图，补一点呼吸 */
+#contact .custom-heading{margin-bottom:8px}
+
+/* 单件作品页：完整显示，不裁切 */
+.detail-stage.single .detail-card img{object-fit:contain}
+
+/* ---------- 首屏右侧：本期选辑（补掉右半边的空） ---------- */
+.hero-feature{
+  position:absolute;
+  z-index:3;
+  right:6%;
+  top:clamp(200px,28vh,330px);   /* 与左侧第一行正文对齐，形成一条横向基线 */
+  /* 第三个值保证和左栏永远留出 60px 上下的空：宽度随窗口自适应，不靠断点硬切 */
+  width:min(48vw,700px,calc(86vw - 540px));
+}
+.hf-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  border-bottom:1px solid rgba(27,25,19,.22);
+  padding-bottom:11px;
+  margin:0 0 26px;
+}
+.hf-head span{font-size:15px;letter-spacing:.26em;color:var(--ink-2)}
+.hf-head b{font-size:12.5px;font-weight:400;letter-spacing:.18em;color:var(--seal)}
+
+.hf-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+.hf-item{display:block;color:inherit;text-decoration:none;padding-bottom:4px}
+
+
+.hf-no{display:block;font-size:12.5px;letter-spacing:.18em;color:var(--seal);margin-bottom:9px}
+.hf-item figure{
+  margin:0;
+  overflow:hidden;
+  background:var(--paper-deep);
+  border:1px solid rgba(27,25,19,.14);
+  box-shadow:0 14px 34px rgba(64,54,38,.13);
+}
+.hf-item img{
+  display:block;
+  width:100%;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  filter:saturate(.95);
+  transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .5s;
+}
+.hf-item:hover img,.hf-item:focus-visible img{transform:scale(1.035);filter:saturate(1.04)}
+.hf-item:hover figure{border-color:rgba(168,50,42,.5)}
+.hf-cap{
+  display:block;
+  margin-top:10px;
+  font-size:15px;
+  line-height:1.5;
+  letter-spacing:.05em;
+  color:var(--ink-2);
+}
+.hf-note{
+  margin:24px 0 0;
+  font-size:12.5px;
+  letter-spacing:.14em;
+  color:var(--ink-3);
+  text-align:right;
+}
+
+/* 1024–1180：左栏已经很宽，样张换成更窄的一列站到右边去，不要整块收掉 */
+@media(max-width:1179px){
+  .hero-feature{width:min(33vw,340px);right:5%}
+  .hf-row{gap:10px}
+  .hf-head{margin-bottom:16px}
+  .hf-head span{font-size:11.5px;letter-spacing:.24em}
+  .hf-head b{display:none}
+  .hf-cap{font-size:11.5px;margin-top:8px}
+}
+
+/* 手机上没有右半屏，把样张改成正文下方的一条带子，别直接丢掉 */
+@media(max-width:900px){
+  .hero-feature{
+    display:block;
+    position:relative;
+    right:auto;
+    top:auto;
+    width:auto;
+    margin:16px 7% 0;
+  }
+  .hf-head{margin-bottom:12px}
+  .hf-head span{font-size:11px;letter-spacing:.26em}
+  .hf-row{gap:11px}
+  .hf-item img{aspect-ratio:16/10}
+  .hf-no,.hf-cap{display:none}
+}
+
+/* 矮屏手机上样张会被裁掉，宁可不要 */
+@media(max-width:900px) and (max-height:780px){
+  .hero-feature{display:none}
+}
+
+/* ---------- 结尾页右侧：可承接的工作（补掉右半屏的空） ---------- */
+.end-panel{
+  position:absolute;
+  z-index:3;
+  right:6%;
+  top:44%;
+  transform:translateY(-50%);
+  width:min(36vw,440px);
+}
+.ep-label{
+  display:flex;
+  align-items:baseline;
+  gap:15px;
+  margin:0 0 28px;
+  padding:0 62px 13px 0;
+  border-bottom:1px solid rgba(27,25,19,.24);
+}
+.ep-label span{font:12px/1 var(--latin,Georgia,serif);letter-spacing:.2em;color:var(--seal)}
+.ep-label b{font-family:var(--serif);font-weight:600;font-size:15px;letter-spacing:.26em;color:rgba(27,25,19,.7)}
+
+.ep-list{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.ep-list li{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:16px}
+.ep-list strong{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:.08em;color:var(--ink)}
+.ep-list em{font-style:normal;font-size:14.5px;letter-spacing:.04em;color:rgba(27,25,19,.58);white-space:nowrap}
+
+.ep-meta{
+  display:grid;
+  gap:11px;
+  margin:32px 0 0;
+  padding-top:22px;
+  border-top:1px solid rgba(27,25,19,.14);
+}
+.ep-meta div{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:baseline}
+.ep-meta dt{font:12.5px/1 var(--latin,Georgia,serif);letter-spacing:.16em;color:rgba(27,25,19,.55)}
+.ep-meta dd{margin:0;font-size:15.5px;letter-spacing:.04em;color:rgba(27,25,19,.7)}
+
+.ep-seal{
+  position:absolute;
+  top:-16px;
+  right:0;
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(168,50,42,.55);
+  color:var(--seal);
+  font-family:var(--serif);
+  font-size:19px;
+  font-weight:600;
+  line-height:1;
+  background:rgba(168,50,42,.04);
+}
+
+/* 1080 以下的屏，左栏已经占满，右侧这块会挤在一起，直接收起 */
+@media(max-width:1079px){
+  .end-panel{display:none}
+}
